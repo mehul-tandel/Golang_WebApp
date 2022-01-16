@@ -30,10 +30,19 @@ func main() {
 	// Pass current config instance to app var in render
 	render.NewTemplates(&app)
 
-	// assign handler functions to routes
-	http.HandleFunc("/", handlers.Repo.Home)
-	http.HandleFunc("/about", handlers.Repo.About)
+	// // assign handler functions to routes (before using pat)
+	// http.HandleFunc("/", handlers.Repo.Home)
+	// http.HandleFunc("/about", handlers.Repo.About)
 
 	fmt.Printf("Starting application on port %s", portNumber)
-	http.ListenAndServe(portNumber, nil)
+	// http.ListenAndServe(portNumber, nil)
+
+	srv := &http.Server{
+		Addr:    portNumber,
+		Handler: routes(&app),
+	}
+
+	err = srv.ListenAndServe()
+	log.Fatal(err)
+
 }
