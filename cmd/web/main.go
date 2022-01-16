@@ -30,7 +30,7 @@ func main() {
 	// Pass current config instance to app var in render
 	render.NewTemplates(&app)
 
-	// // assign handler functions to routes (before using pat)
+	// // assign handler functions to routes (before using chi)
 	// http.HandleFunc("/", handlers.Repo.Home)
 	// http.HandleFunc("/about", handlers.Repo.About)
 
